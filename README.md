@@ -31,7 +31,7 @@ Once inside the container run
 ./prepare_db.sh 
 ```
 This will need to be done everytime you start the container unless you mount a host folder to keep the maridbdb server files
-```
+
 After the above completes you can start redmine by doing:
 ```
 cd ../redmine
