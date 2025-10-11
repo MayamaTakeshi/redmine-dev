@@ -15,14 +15,19 @@ then
     read git_user_name
 fi
 
+mkdir -p mariadb-data
+
 tag=`basename "$(pwd)"`
 
 docker run \
   --rm \
   -it \
-  --net=host \
+  -p 3000:3000 \
   -v /etc/localtime:/etc/localtime:ro \
   -v `pwd`/..:/home/$git_user_name/src/git \
+  -v `pwd`/mariadb-data:/var/lib/mysql \
+  -e MARIADB_ROOT_PASSWORD=1234 \
   -w /home/$git_user_name/src/git/$tag \
+  --entrypoint /bin/bash \
   $tag
 

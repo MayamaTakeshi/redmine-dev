@@ -1,0 +1,12 @@
+name: dev
+root: ~/src/git/redmine-dev
+
+windows:
+  - mariadb:
+    - sudo /etc/init.d/mariadb restart
+    - mysql -u root -p1234 redmine
+  - redmine:
+    - ./prepare_db_and_redmine.sh
+    - cd ../redmine
+    - bundle exec rails server -e development -b 0.0.0.0
+

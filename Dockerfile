@@ -9,7 +9,7 @@ ARG USER_GID=$USER_UID
 
 SHELL ["/bin/bash", "--login", "-c"]
 
-RUN apt-get update && apt-get install -y autoconf automake build-essential cmake curl git-core gnupg jq libavdevice-dev libboost-dev libncurses5-dev libopencore-amrnb-dev libopencore-amrwb-dev libopus-dev libpcap-dev libsdl2-dev libspeex-dev libssl-dev libswscale-dev libtiff-dev libtool libtool-bin libv4l-dev libvo-amrwbenc-dev locales nano net-tools ngrep pkg-config python-dev rsyslog ruby subversion sudo swig tcpdump tmux tree uuid-dev vim wget tmuxinator xmlstarlet default-jdk doxygen mono-complete libxml2-utils
+RUN apt-get update && apt-get install -y autoconf automake build-essential cmake curl git-core gnupg jq libavdevice-dev libboost-dev libncurses5-dev libopencore-amrnb-dev libopencore-amrwb-dev libopus-dev libpcap-dev libsdl2-dev libspeex-dev libssl-dev libswscale-dev libtiff-dev libtool libtool-bin libv4l-dev libvo-amrwbenc-dev locales nano net-tools ngrep pkg-config python-dev rsyslog ruby subversion sudo swig tcpdump tmux uuid-dev vim wget xmlstarlet default-jdk doxygen mono-complete libxml2-utils tree
 
 RUN apt install -y gnupg2
 
@@ -22,17 +22,6 @@ set -o pipefail
 
 echo "install and setup mariadb and db redmine"
 apt install -y mariadb-server
-
-/etc/init.d/mariadb start
-
-mysql -e "use mysql; ALTER USER 'root'@'localhost' IDENTIFIED VIA mysql_native_password USING PASSWORD('1234')"
-
-mysql -u root -p1234 <<EOL
-CREATE DATABASE redmine CHARACTER SET utf8mb4;
-CREATE USER 'redmine'@'localhost' IDENTIFIED BY 'redmine';
-GRANT ALL PRIVILEGES ON redmine.* TO 'redmine'@'localhost';
-EOL
-
 EOF
 
 # Create the user
@@ -142,3 +131,20 @@ rvm install 3.1.6
 set -o nounset
 
 EOF
+
+RUN <<EOF
+set -o errexit
+set -o nounset
+set -o pipefail
+
+echo "Installing tmuxinator"
+set +o nounset
+rvm use default
+set -o nounset
+gem install tmuxinator
+EOF
+
+EXPOSE 3000/tcp
+
+CMD ["/bin/bash"]
+
