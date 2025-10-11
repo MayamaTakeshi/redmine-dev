@@ -26,13 +26,17 @@ You need a folder structure like this:
 ```
 ## Prepare mariadb
 
-Once inside the container, at the first time you will need to prepare. Do it this way:
+Once inside the container, at the first time you will need to prepare mariadb to use host folder to store databases. Do it this way:
 ```
 ./prepare_mariadb.sh
 ```
-This will need to be done only once.
+This will need to be done only once. The folder mariadb-data (created in the host of not present) will be used by mariadb to store the databases.
 
 Then exit the container.
+
+Obs: if necesary you can redo this just deleting the folder at the host:
+```
+sudo rm mariadb-data/ -fr
 ```
 
 ## Plugin development
@@ -49,8 +53,6 @@ http://localhost:3000/
 
 Inside the folder redmine/plugins, add symbolic links to folders of the plugins you are working on and restart redmine (do 'bundle install --path bundle-data' if required by the plugin)
 (we use 'bundle install --path bundle-data' instead of just 'bundle install' because this way we will preserve the bundle artifacts and we will not need ot wait for long the next time we start the container).
-
-
 
 
 
