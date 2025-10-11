@@ -30,7 +30,7 @@ Once inside the container, at the first time you will need to prepare mariadb to
 ```
 ./prepare_mariadb.sh
 ```
-This will need to be done only once. The folder mariadb-data (created in the host of not present) will be used by mariadb to store the databases.
+This will need to be done only once. The folder mariadb-data (created in the host if not present) will be used by mariadb to store the databases.
 
 Then exit the container.
 
@@ -51,8 +51,11 @@ Then you can access redmine in your browser at:
 http://localhost:3000/
 ```
 
-Inside the folder redmine/plugins, add symbolic links to folders of the plugins you are working on and restart redmine (do 'bundle install --path bundle-data' if required by the plugin)
-(we use 'bundle install --path bundle-data' instead of just 'bundle install' because this way we will preserve the bundle artifacts and we will not need ot wait for long the next time we start the container).
+Inside the folder redmine/plugins, add symbolic links to folders of the plugins you are working on and restart redmine.
+
+If the plugin requires doing 'bundle install', do 'bundle install --path bundle-data' instead.
+
+(this way we will preserve the bundle artifacts in the host and we will not need to wait for long the next time we start the container).
 
 
 
