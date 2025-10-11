@@ -38,10 +38,11 @@ Obs: if necesary you can redo this just deleting the folder at the host:
 ```
 sudo rm mariadb-data/ -fr
 ```
+then starting the container and running ./prepare_maridb.sh again.
 
 ## Plugin development
 
-Inside the container, you can start a tmux session with mysql connected to mariadb server and redmine running by doing:
+Inside the container, you can start a tmux session with a window for mariadb and another window with redmine running by doing:
 ```
 ./tmux_session.sh
 ```
