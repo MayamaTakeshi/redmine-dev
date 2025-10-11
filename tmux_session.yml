@@ -3,8 +3,9 @@ root: ~/src/git/redmine-dev
 
 windows:
   - mariadb:
+    - sudo /etc/init.d/redis-server restart
     - sudo /etc/init.d/mariadb restart
-    - mysql -u root -p1234 redmine
+    - mariadb -u root -p1234 redmine
   - redmine:
     - ./prepare_db_and_redmine.sh
     - cd ../redmine
