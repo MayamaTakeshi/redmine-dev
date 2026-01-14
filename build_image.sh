@@ -48,7 +48,7 @@ fi
 
 tag=`basename "$(pwd)"`
 
-docker build \
+DOCKER_BUILDKIT=1 docker build \
 	$progress_option \
 	$cache_option \
 	--network=host \

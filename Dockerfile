@@ -127,7 +127,7 @@ set -o nounset
 echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
 
 set +o nounset
-rvm install 3.1.6
+rvm install 3.2.2
 set -o nounset
 
 EOF

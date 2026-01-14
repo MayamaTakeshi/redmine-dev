@@ -23,6 +23,7 @@ docker run \
   --rm \
   -it \
   -p 3000:3000 \
+  -p 443:443 \
   -v /etc/localtime:/etc/localtime:ro \
   -v `pwd`/..:/home/$git_user_name/src/git \
   -v `pwd`/mariadb-data:/var/lib/mysql \

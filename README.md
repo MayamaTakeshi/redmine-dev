@@ -28,7 +28,7 @@ You need a folder structure like this:
 
 Once inside the container, at the first time you will need to prepare mariadb to use host folder to store databases. Do it this way:
 ```
-./prepare_mariadb.sh
+sudo ./prepare_mariadb.sh
 ```
 This will need to be done only once. The folder mariadb-data (created in the host if not present) will be used by mariadb to store the databases.
 
