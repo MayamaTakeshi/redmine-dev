@@ -9,5 +9,6 @@ windows:
   - redmine:
     - ./prepare_db_and_redmine.sh
     - cd ../redmine
+    - bundle pristine puma # needed after upgrade from debian bullseye to trixie
     - bundle exec rails server -e development -b 0.0.0.0
 
